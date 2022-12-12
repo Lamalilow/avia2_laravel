@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('start_city');
-            $table->string('end_city');
+            $table->foreignId('start_city_id');
+            $table->foreign('start_city_id')->references('id')->on('cities');
+            $table->foreignId('end_city_id');
+            $table->foreign('end_city_id')->references('id')->on('cities');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->foreignId('airplane_id');

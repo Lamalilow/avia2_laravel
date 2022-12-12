@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class createAirPlaneRequest extends FormRequest
+class createFlightRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,19 @@ class createAirPlaneRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => array('required','regex:/^[A-Za-z]-[A-Za-z]{4}|[A-Za-z]{2}-[A-Za-z]{3}|N[0-9]{1,5}[A-Za-z]{0,2}+$/i', 'unique:airplanes'),
-            'email' => 'regex:/^.+@.+$/i'
+            'start_city_id' => 'required|numeric',
+            'end_city_id' => 'required|numeric',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date',
+            'airplane_id' => 'required',
         ];
     }
     public function messages()
     {
         return [
             'required' => 'Поле обязательно для заполнения',
-            'name.regex' => 'Номер дожен быть формата N390HA',
-            'name.unique' => 'Самолет с таким номером уже существует',
+            'start_city_id.numeric' => 'Выберите значение из списка',
+            'end_city_id.numeric' => 'Выберите значение из списка',
         ];
     }
 }

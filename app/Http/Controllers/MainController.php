@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Flight;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function main()
+    public function mainView()
     {
-        return view('main');
+        $flights =  Flight::all();
+        return view('main', compact('flights'));
     }
 }

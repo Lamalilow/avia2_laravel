@@ -12,9 +12,10 @@
 <body>
 @include('components.header')
 <div class="container">
-    <div class="row">
+    <div class="row mt-lg-4">
         <div class="col">
-            <a href="{{ route('createPlane') }}">Добавить самолет</a>
+            <a class="btn btn-primary" href="{{ route('createPlane') }}">Добавить самолет</a>
+            <a class="btn btn-primary" href="{{ route('createFlight') }}">Добавить рейс</a>
         </div>
     </div>
 </div>

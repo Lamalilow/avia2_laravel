@@ -43,4 +43,9 @@ class UserController extends Controller
         return redirect()->route('/');
     }
 
+    public function warningView()
+    {
+        return view('warning');
+    }
+
 }

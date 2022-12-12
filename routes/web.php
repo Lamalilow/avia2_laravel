@@ -16,15 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-})->name('/');
-Route::middleware('UserAccess')->group(function (){
+})->name('welcome');
+Route::middleware(\App\Http\Middleware\UserAccess::class)->group(function (){
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('admin', [AdminController::class, 'adminView'])->name('admin');
-    Route::get('admin/createPlane', [AdminController::class, 'createAirPlaneView'])->name('createPlane');
+
+    Route::get('admin', [AdminController::class, 'adminView'])->middleware('AdminAccess')->name('admin');
+
+    Route::get('admin/createPlane', [AdminController::class, 'createAirPlaneView'])->middleware('AdminAccess')->name('createPlane');
     Route::post('admin/createPlane', [AdminController::class, 'createAirPlanePost']);
+
+    Route::post('admin/deletePlane/{plane}', [AdminController::class, 'deleteAirPlanePost'])->middleware('AdminAccess')->name('deletePlane');
+    Route::post('admin/createFlight', [AdminController::class, 'createFlightPost']);
+    Route::get('admin/createFlight', [AdminController::class, 'createFlightView'])->middleware('AdminAccess')->name('createFlight');
+
 });
+Route::get('/', [MainController::class, 'mainView'])->name('/');
 Route::get('login', [UserController::class, 'loginView'])->name('login');
 Route::post('login', [UserController::class, 'loginPost']);
 Route::get('registration', [UserController::class, 'registrationView'])->name('registration');

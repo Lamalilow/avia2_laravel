@@ -19,7 +19,7 @@ class UserAccess
     {
         if(!Auth::user())
         {
-            return redirect(route('warning'));
+            return redirect()->route('warning');
         }
         return $next($request);
     }
