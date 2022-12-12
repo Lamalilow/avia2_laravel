@@ -16,4 +16,18 @@ class Flight extends Model
         'end_time',
         'airplane_id',
     ];
+
+    public function start_city()
+    {
+        return $this->hasOne(City::class, 'id', 'start_city_id')->first()->name;
+    }
+    public function end_city()
+    {
+        return $this->hasOne(City::class, 'id', 'end_city_id')->first()->name;
+    }
+    public function airplane()
+    {
+        return $this->hasOne(Airplane::class, 'id', 'airplane_id')->first()->name;
+    }
+
 }

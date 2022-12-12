@@ -3,26 +3,49 @@
 
 @section('content')
 
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active position-relative">
-                <img style="height: 600px" src="public/assets/img/bg.webp" class="d-block w-100" alt="фон">
-                <div class=" mt-4 p-5 bg-primary text-white rounded">
-                    <h1>Jumbotron Example</h1>
-                    <p>Lorem ipsum...</p>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid">
-        <img src="" alt="">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <img src="public/assets/img/bg.webp" alt="">
+            </div>
+            <div class="col"></div>
+        </div>
     </div>
     <form action="" method="post">
 
     </form>
-    @foreach($flights as $flight)
-        <div class="col">
-
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Город вылета</th>
+                        <th>Город прилета</th>
+                        <th>Дата вылета</th>
+                        <th>Дата прилета</th>
+                        <th>Самолет</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($flights as $flight)
+                        <tr>
+                            <td>{{ $flight->start_city() }}</td>
+                            <td>{{ $flight->end_city() }}</td>
+                            <td>{{ $flight->start_time }}</td>
+                            <td>{{ $flight->end_time }}</td>
+                            <td>{{ $flight->airplane() }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="col"></div>
         </div>
-    @endforeach
+    </div>
+
+
 @endsection
